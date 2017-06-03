@@ -121,7 +121,7 @@ public class CategoryAction extends ActionSupport{
 		if(StringUtils.isNotBlank(this.condition)){
 			dc.add(Restrictions.like("name", "%"+this.condition+"%"));
 		}
-		PageBean pb = categoryService.getPageBean(dc, currentPage, 5, tag, startPage);
+		PageBean pb = categoryService.getPageBean(dc, currentPage, 10, tag, startPage);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("condition", this.condition);
 		ActionContext.getContext().put("targetAction", "categoryAction_showTagToPage.action");

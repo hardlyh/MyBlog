@@ -133,7 +133,7 @@ public class WebPageAction {
 		DetachedCriteria dc = DetachedCriteria.forClass(Page.class);
 		dc.add(Restrictions.eq("isprivate", "yes"));
 		dc.addOrder(Order.desc("time"));
-		PageBean pb = pageService.getPageBean(dc, currentPage, 7, tag, startPage);
+		PageBean pb = pageService.getPageBean(dc, currentPage, 10, tag, startPage);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("targetAction", "webPageAction_findByPrivate");
 		return "privateList";
@@ -150,7 +150,7 @@ public class WebPageAction {
 			ActionContext.getContext().put("tagCondition", this.tagCondition);
 		}
 		dc.addOrder(Order.desc("time"));
-		PageBean pb = pageService.getPageBean(dc, currentPage, 7, tag, startPage);
+		PageBean pb = pageService.getPageBean(dc, currentPage, 10, tag, startPage);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("targetAction", "webPageAction_condition");
 		return "pageList";
@@ -160,7 +160,7 @@ public class WebPageAction {
 		DetachedCriteria dc = DetachedCriteria.forClass(Page.class);
 		dc.add(Restrictions.eq("isprivate", "no"));
 		dc.addOrder(Order.desc("time"));
-		PageBean pb = pageService.getPageBean(dc, currentPage, 7, tag, startPage);
+		PageBean pb = pageService.getPageBean(dc, currentPage, 10, tag, startPage);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("targetAction", "webPageAction_condition");
 		return "pageList";

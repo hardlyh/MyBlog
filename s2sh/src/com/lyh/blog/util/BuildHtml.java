@@ -27,7 +27,7 @@ public class BuildHtml {
 	
 		ServletContext sc=ServletActionContext.getServletContext();
 		String url1=sc.getRealPath("");
-		System.out.println(url1);
+		
 		File filePath=new File(url1);
 		
 		Configuration configuration = new Configuration();  

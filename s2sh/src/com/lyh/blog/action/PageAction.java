@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.util.SubsetIteratorFilter.Decider;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
@@ -134,7 +137,7 @@ public class PageAction extends ActionSupport {
 			dc.add(Restrictions.like("title", "%"+this.condition+"%"));
 		}
 		dc.addOrder(Order.desc("time"));
-		PageBean pb = pageService.getPageBean(dc, currentPage, 5, tag, startPage);
+		PageBean pb = pageService.getPageBean(dc, currentPage, 10, tag, startPage);
 		ActionContext.getContext().put("pageBean", pb);
 		ActionContext.getContext().put("condition", this.condition);
 		ActionContext.getContext().put("targetAction", "pageAction_showAllPage.action");
@@ -169,6 +172,22 @@ public class PageAction extends ActionSupport {
 	}
 	//É¾³ý
 	public String deletePage() {
+		Page page=pageService.getEntryById(id);
+		ServletContext sc=ServletActionContext.getServletContext();
+		File file=new File(sc.getRealPath("/")+page.getHtmlUrl()+".jsp");
+		if(!page.getHead_url().equals("default.jsp")){
+			File file2=new File(sc.getRealPath("")+"/admin/assets/page_img/"+page.getHead_url());
+			if (file2.isFile() && file2.exists()) {
+				System.out.println(file2.getPath());
+		        file2.delete();  
+		    }  
+		}
+		if (file.isFile() && file.exists()) {
+			System.out.println(file.getPath());
+	        file.delete();  
+	        
+	    }  
+		
 		pageService.deleteEntry(id);
 		ActionContext.getContext().put("success","É¾³ýÎÄÕÂ³É¹¦");
 		return "pageListAction";

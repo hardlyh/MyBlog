@@ -43,7 +43,9 @@
           </p>
         </div>        
         <div class="am-article-bd">
+        <#if page.head_url??>
         <img src="admin/assets/page_img/${page.head_url}" alt="" class="blog-entry-img blog-article-margin">          
+        </#if>
         <p class="class="am-article-lead"">
        
           ${page.content }
