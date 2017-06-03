@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+           	
+		
+	      	
+		
+		<bean id="commDao" class="com.lyh.blog.dao.base.impl.CommonDaoImpl" abstract="true">
+		  	<property name="hibernateTemplate">
+				<ref bean="hibernateTemplate"/>
+			</property>
+		</bean>
+		
+		<!-- page -->
+		<bean id="pageDao" class="com.lyh.blog.dao.impl.PageDaoImpl" parent="commDao"></bean>
+		
+		<bean id="pageService" class="com.lyh.blog.service.impl.PageServiceImpl">
+			<property name="commonDao" ref="pageDao"></property>
+		</bean>
+		
+		<bean id="pageAction" class="com.lyh.blog.action.PageAction" scope="prototype">
+		<property name="pageService" ref="pageService"></property>
+		</bean>
+		
+		<!-- categor -->
+		<bean id="categoryDao" class="com.lyh.blog.dao.impl.CategoryDaoImpl" parent="commDao"></bean>
+		
+		<bean id="categoryService" class="com.lyh.blog.service.impl.CategoryServiceImpl">
+			<property name="commonDao" ref="categoryDao"></property>
+		</bean>
+		
+		<bean id="categoryAction" class="com.lyh.blog.action.CategoryAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"></property>
+		</bean>
+		
+		<!-- myprofile -->
+		<bean id="myprofileDao" class="com.lyh.blog.dao.impl.MyProfileDaoImpl" parent="commDao"></bean>
+		
+		<bean id="myprofileService" class="com.lyh.blog.service.impl.MyprofileServiceImpl">
+			<property name="commonDao" ref="myprofileDao"></property>
+		</bean>
+		
+		<bean id="myprofileAction" class="com.lyh.blog.action.MyProfileAction" scope="prototype">
+			<property name="myprofileService" ref="myprofileService"></property>
+		</bean>
+		
+		<!-- articleAction -->
+		
+		
+		<bean id="articleDao" class="com.lyh.blog.dao.impl.ArticleDaoImpl" parent="commDao"></bean>
+		
+		<bean id="articleService" class="com.lyh.blog.service.impl.ArticleServiceImpl">
+			<property name="commonDao" ref="articleDao"></property>
+		</bean>
+		
+		<bean id="articleAction" class="com.lyh.blog.action.ArticleAction" scope="prototype">
+			<property name="articleService" ref="articleService"></property>
+		</bean>
+		
+		<!-- PageViewDay -->
+		
+		<bean id="pageViewDayDao" class="com.lyh.blog.dao.impl.PageViewDayDaoImpl" parent="commDao"></bean>
+		
+		
+		<bean id="pageViewDayService" class="com.lyh.blog.service.impl.PageViewDayServiceImpl">
+			<property name="commonDao" ref="pageViewDayDao"></property>
+		</bean>
+		
+		<!-- PageViewMouth -->
+		
+		<bean id="pageViewMouthDao" class="com.lyh.blog.dao.impl.PageViewMouthDaoImpl" parent="commDao"></bean>
+		
+		
+		<bean id="pageViewMouthService" class="com.lyh.blog.service.impl.PageViewMouthServiceImpl">
+			<property name="commonDao" ref="pageViewMouthDao"></property>
+		</bean>
+		
+		
+		<!-- adminAction -->
+		
+		
+		<bean id="adminDao" class="com.lyh.blog.dao.base.impl.AdminDaoImpl" parent="commDao"></bean>
+		
+		<bean id="adminService" class="com.lyh.blog.service.impl.AdminServiceImpl">
+			<property name="commonDao" ref="adminDao"></property>
+		</bean>
+		
+		<bean id="adminAction" class="com.lyh.blog.action.AdminAction" scope="prototype">
+			<property name="adminService" ref="adminService"></property>
+		</bean>
+		
+		<!-- IndexManageAction -->
+		
+		<bean id="webDataDao" class="com.lyh.blog.dao.impl.WebDataDaoImpl" parent="commDao"></bean>
+		
+		<bean id="webDataService" class="com.lyh.blog.service.impl.WebDataServiceImpl">
+			<property name="commonDao" ref="webDataDao"></property>
+		</bean>
+		
+		<bean id="indexManageAction" class="com.lyh.blog.action.IndexManageAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"></property>
+			<property name="dataService" ref="webDataService"></property>
+			<property name="dayService" ref="pageViewDayService"></property>
+			<property name="mouthService" ref="pageViewMouthService"></property>
+			<property name="pageService" ref="pageService"></property>
+		</bean>
+		
+		<bean id="UploadToQ" class="com.lyh.blog.qiniuyun.UploadToQiniuyun" scope="prototype"></bean>
+		
+		<!-- webpageAction -->
+       
+		<bean id="webPageAction" class="com.lyh.blog.action.WebPageAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"></property>
+			<property name="myprofileService" ref="myprofileService"></property>
+			<property name="pageService" ref="pageService"></property>
+			<property name="articleService" ref="articleService"></property>
+		</bean>
+		
+		<!-- webManageAction -->
+		
+		<bean id="webManageAction" class="com.lyh.blog.action.WebManageAction" scope="prototype"></bean>
+		
+	
+       	
+        
+		
+
+</beans>

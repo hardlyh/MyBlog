@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-23 17:13:53 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.lyh.blog.domain.Category" table="category" catalog="myblog">
+        <id name="CId" type="java.lang.Integer">
+            <column name="c_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" />
+        </property>
+        <property name="time" type="date">
+            <column name="time" length="10" />
+        </property>
+         <property name="amount" type="java.lang.Integer">
+            <column name="amount" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

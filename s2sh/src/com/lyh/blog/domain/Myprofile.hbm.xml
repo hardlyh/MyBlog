@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-23 17:13:53 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.lyh.blog.domain.Myprofile" table="myprofile" catalog="myblog">
+        <id name="UId" type="int">
+            <column name="u_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="age" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="30" />
+        </property>
+        <property name="headUrl" type="string">
+            <column name="head_url" />
+        </property>
+        <property name="weibo" type="string">
+            <column name="weibo" />
+        </property>
+        <property name="qq" type="string">
+            <column name="qq" />
+        </property>
+        <property name="github" type="string">
+            <column name="github" />
+        </property>
+        <property name="school" type="string">
+            <column name="school" />
+        </property>
+        <property name="profile" type="string">
+            <column name="profile" />
+        </property>
+        <property name="web" type="string">
+            <column name="web" />
+        </property>
+        <property name="ability" type="string">
+            <column name="ability" />
+        </property>
+    </class>
+</hibernate-mapping>

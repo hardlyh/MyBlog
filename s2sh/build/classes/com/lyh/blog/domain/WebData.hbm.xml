@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-23 17:13:53 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.lyh.blog.domain.WebData" table="web_data" catalog="myblog">
+        <id name="data_id" type="java.lang.Integer">
+            <column name="data_id" />
+            <generator class="identity" />
+        </id>
+        <property name="web_views" type="java.lang.Integer">
+            <column name="web_views" />
+        </property>
+        <property name="web_articleamount" type="java.lang.Integer">
+            <column name="web_articleamount" />
+        </property>
+    </class>
+</hibernate-mapping>

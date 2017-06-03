@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-5-23 17:13:53 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.lyh.blog.domain.PageviewMonth" table="pageview_month" catalog="myblog">
+        <id name="month" type="string">
+            <column name="month" />
+            <generator class="assigned" />
+        </id>
+        <property name="amount" type="java.lang.Integer">
+            <column name="amount" />
+        </property>
+    </class>
+</hibernate-mapping>
