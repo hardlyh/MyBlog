@@ -75,7 +75,7 @@
 								    </div>
 								  </div>	
 								  <div style="width: 80px; margin-left:  90%; ">
-										<button type="button" id="submit1" class="btn btn-success" >提交</button>		
+										<button type="submit" id="submit1" class="btn btn-success" onclick="return confirm('是否提交');">提交</button>		
 								</div>	
 								</form>	
 							</div>	

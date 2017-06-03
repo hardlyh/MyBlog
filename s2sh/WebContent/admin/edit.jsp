@@ -126,12 +126,13 @@
 	<%@ include file="js.jsp" %> 
 	<script>
 	$(document).ready(function() {
+		
 		$("#editPage").addClass("active");
-		var editor = new wangEditor('div1');
+		 var editor = new wangEditor('div1');
 		
-		
+	
 		// 上传图片（举例）
-	    editor.config.uploadImgUrl = 'UploadServlet.servlet';
+	    editor.config.uploadImgUrl = 'UploadToQ';
 
 	    // 配置自定义参数（举例）
 	    editor.config.uploadParams = {
@@ -141,12 +142,14 @@
 
 	    // 设置 headers（举例）
 	    editor.config.uploadHeaders = {
-	        'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+	        'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+	        'Cache-Control':'max-age=0',
+	        'Upgrade-Insecure-Requests':1
 	    };
 
 	    // 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
-	    editor.config.hideLinkImg = true;
-	    
+	    editor.config.hideLinkImg = false;
+	   
    		 editor.create();
    		 
    		 $("#submit1").click(function(){

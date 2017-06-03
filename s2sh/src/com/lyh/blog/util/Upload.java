@@ -17,15 +17,14 @@ import com.qiniu.util.Auth;
 
 public class Upload {
 	
-	public static String upload(FileItem item,String number) {
-		InputStream in;
+	public static String upload(InputStream in,String number) {
 		
 		//Configuration cfg = new Configuration(Zone.zone1());
 		Configuration cfg = new Configuration(Zone.zone0());
 		//...其他参数参考类注释
 		UploadManager uploadManager = new UploadManager(cfg);
 		//...生成上传凭证，然后准备上传
-		String key = FilenameUtils.getName(number+item.getName());
+		String key = FilenameUtils.getName(number);
 		String accessKey = "mIIKJO9gxKLSKEiUEiIRZHuU_oXPkYpZOhotSIYN";
 		String secretKey = "r9yHYzYX77jr1yoF7mv7jZCaL2xNgXNdPmE4N9U0";
 		//String bucket = "frist";
@@ -34,10 +33,8 @@ public class Upload {
 		String upToken = auth.uploadToken(bucket);
 			try {
 				System.out.println("upload");
-				in = item.getInputStream();
 				Response response2= uploadManager.put(in,key,upToken,null, null);
 				DefaultPutRet putRet = new Gson().fromJson(response2.bodyString(), DefaultPutRet.class);
-				
 		        return key;
 			} catch (QiniuException e) {
 		          Response r = e.response;

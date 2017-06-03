@@ -6,6 +6,7 @@
 <struts>
 	<constant name="struts.ui.theme" value="simple"></constant>
 	<constant name="struts.devMode" value="true"/>
+	
 	<include file="struts/struts-model.xml">
 	</include>
 	<!-- <package name="struts-global" namespace="/" extends="struts-default"> <global-results>

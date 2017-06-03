@@ -1,16 +1,16 @@
 package com.lyh.blog.qiniuyun;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.struts2.ServletActionContext;
@@ -19,14 +19,14 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import com.lyh.blog.util.Upload;
 
 public class UploadToQiniuyun implements ServletRequestAware{
-	private File myFileName;
+	private File wangEditorH5File;
 
-	public File getMyFileName() {
-		return myFileName;
+	public File getWangEditorH5File() {
+		return wangEditorH5File;
 	}
 
-	public void setMyFileName(File myFileName) {
-		this.myFileName = myFileName;
+	public void setWangEditorH5File(File wangEditorH5File) {
+		this.wangEditorH5File = wangEditorH5File;
 	}
 
 	public HttpServletRequest getRequest() {
@@ -39,28 +39,14 @@ public class UploadToQiniuyun implements ServletRequestAware{
 
 	private HttpServletRequest request;
 	public String upload() throws IOException, ServletException{
-		Part part = request.getPart("myFileName");
-		System.out.println("part : "+part);
+		System.out.println("File : "+wangEditorH5File);
 		String fileanme="";
-		DiskFileItemFactory factory = new DiskFileItemFactory();//产生FileItem的工厂
-		ServletFileUpload sfu = new ServletFileUpload(factory);
-		List<FileItem> items = new ArrayList<FileItem>();
 		String filename=String.valueOf(System.currentTimeMillis());
-		try {
-			items = sfu.parseRequest(request);
-		} catch (FileUploadException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("request : "+ request);
-		System.out.println("items.size : "+items.size());
-		System.out.println("File : "+myFileName);
-		for(FileItem item:items){
-			Upload u=new Upload();
-			fileanme=u.upload(item,filename );
-		}
-		System.out.println("filename"+fileanme);
-		ServletActionContext.getResponse().getWriter().write(fileanme);
+		InputStream input = new FileInputStream(wangEditorH5File);
+		Upload u=new Upload();
+		fileanme=u.upload(input,filename );
+		System.out.println("http://oelwgiulw.bkt.clouddn.com/"+fileanme);
+		ServletActionContext.getResponse().getWriter().write("http://oelwgiulw.bkt.clouddn.com/"+fileanme);
 		
 		return null;
 	}
